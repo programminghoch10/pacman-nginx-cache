@@ -14,6 +14,12 @@ grep '^nameserver' < /etc/resolv.conf \
     > /etc/nginx/conf.d/resolvers.conf
 EOF
 
+# increase worker connections
+COPY --chmod=554 <<EOF /docker-entrypoint.d/35-worker-connections.sh
+#/bin/sh
+sed -i 's/worker_connections \+[0-9]\+ *;/worker_connections 4096;/' /etc/nginx/nginx.conf
+EOF
+
 COPY mirror.template /docker-entrypoint.d/
 COPY --chmod=554 setup-mirrors.sh /docker-entrypoint.d/90-setup-mirrors.sh
 
