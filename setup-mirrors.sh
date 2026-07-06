@@ -20,14 +20,12 @@ while read -r line; do
     if grep -q '^\[.*\]$' <<< "$line"; then
         current_section="${line:1:-1}"
         sections["$current_section"]=""
-        echo found section "$current_section" >&2
         continue
     fi
     if [ -n "$current_section" ]; then
         sections["$current_section"]+="$line"$'\n'
     fi
 done
-echo found "${#sections[@]}" sections >&2
 
 function isConfAssignment() {
     local name="$1"

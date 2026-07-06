@@ -16,3 +16,5 @@ EOF
 
 COPY mirror.template /docker-entrypoint.d/
 COPY --chmod=554 setup-mirrors.sh /docker-entrypoint.d/90-setup-mirrors.sh
+
+COPY nginx.conf /etc/nginx/conf.d/cacheserver.conf
