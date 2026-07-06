@@ -61,6 +61,7 @@ function processRepoSection() {
             PORT=$((PORT + 1))
             continue
         fi
+        isConfAssignment CacheServer <<< "$line" && continue
         echo ignoring config line "$line" >&2
     done
 }
