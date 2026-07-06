@@ -1,0 +1,8 @@
+server {
+    listen 127.0.0.1:$PORT;
+    location ~ ^/([^/]+)/os/([^/]+)$ {
+        set $repo $1;
+        set $arch $2;
+        proxy_pass $REPO_URL;
+    }
+}

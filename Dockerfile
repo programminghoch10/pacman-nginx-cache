@@ -13,3 +13,6 @@ grep '^nameserver' < /etc/resolv.conf \
     | sed 's/^\(.*\)$/resolver \1;\n/' \
     > /etc/nginx/conf.d/resolvers.conf
 EOF
+
+COPY mirror.template /docker-entrypoint.d/
+COPY --chmod=554 setup-mirrors.sh /docker-entrypoint.d/90-setup-mirrors.sh
