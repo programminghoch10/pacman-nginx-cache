@@ -23,4 +23,10 @@ EOF
 COPY mirror.template /docker-entrypoint.d/
 COPY --chmod=554 setup-mirrors.sh /docker-entrypoint.d/90-setup-mirrors.sh
 
-COPY nginx.conf /etc/nginx/conf.d/cacheserver.conf
+COPY nginx.conf /etc/nginx/templates/cacheserver.conf.template
+ENV NGINX_ENVSUBST_FILTER="^CACHE_"
+
+ENV \
+    CACHE_TIMEOUT=365d \
+    CACHE_MIN_FREE=4G \
+    CACHE_MAX_SIZE=32G

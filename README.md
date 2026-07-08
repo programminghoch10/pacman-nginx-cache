@@ -30,6 +30,14 @@ docker run \
     localhost/pacman-nginx-cache
 ```
 
+Following environment variables can be used to control caching behaviour:
+
+Name | Description | Default
+-|-|-
+`CACHE_TIMEOUT` | How long packages should be retained in the cache | `365d`
+`CACHE_MAX_SIZE` | Maximum size of the cache on disk | `32G`
+`CACHE_MIN_FREE` | Minimum ensured free space on disk | `4G`
+
 ## Use
 
 Add
