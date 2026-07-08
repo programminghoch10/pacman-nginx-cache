@@ -23,7 +23,7 @@ docker run \
     --rm \
     --replace \
     --name pacman-nginx-cache \
-    --publish 8080:80 \
+    --publish 8170:80 \
     --mount type=bind,src=/etc/pacman.conf,dst=/etc/pacman.conf,ro \
     --mount type=bind,src=/etc/pacman.d,dst=/etc/pacman.d,ro \
     --mount type=volume,src=pacman-nginx-cache,dst=/var/www/cache \
@@ -42,7 +42,7 @@ Name | Description | Default
 
 Add
 ```
-CacheServer = http://localhost:8080/$repo/os/$arch
+CacheServer = http://localhost:8170/$repo/os/$arch
 ```
 to your `/etc/pacman.conf`
 after every repository you want to be cached.
