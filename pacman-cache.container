@@ -1,0 +1,22 @@
+[Unit]
+Description=pacman nginx caching server
+
+[Container]
+ContainerName=pacman-nginx-cache
+
+Image=ghcr.io/programminghoch10/pacman-nginx-cache
+Pull=missing
+AutoUpdate=registry
+
+PublishPort=8170:80
+
+Mount=type=volume,src=pacman-nginx-cache,dst=/var/www/cache
+Mount=type=bind,src=/etc/pacman.conf,dst=/etc/pacman.conf,ro
+Mount=type=bind,src=/etc/pacman.d,dst=/etc/pacman.d,ro
+
+#Environment=CACHE_TIMEOUT=365d
+#Environment=CACHE_MIN_FREE=4G
+#Environment=CACHE_MAX_SIZE=32G
+
+[Install]
+WantedBy=default.target
